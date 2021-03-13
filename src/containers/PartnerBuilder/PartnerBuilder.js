@@ -2,7 +2,7 @@ import React from "react"
 import Partner from "../../components/Partner/Partner"
 import BuildControls from "../../components/Partner/BuildControls/BuildControls"
 import Modal from "../../components/UI/Modal/Modal"
-
+import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary"
 
 const TRAIT_PRICES = {
   books:10,
@@ -21,10 +21,11 @@ class PartnerBuilder extends React.Component {
       humor:0,
       kindness: 0,
       financial_savy: 0,
-      cooking:0
+      cooking:0,
     },
     totalPrice: 50,
-    purchaseable:false
+    purchaseable:false,
+    purchasing:false
   }
 
   updatePurchaseState(traits) {
@@ -74,6 +75,10 @@ class PartnerBuilder extends React.Component {
 
   }
 
+  purchaseHandler = () => {
+    this.setState({purchasing: true})
+  }
+
   render(){
 
     const disabledInfo = {
@@ -86,13 +91,16 @@ class PartnerBuilder extends React.Component {
 
     return(
       <>
-        <Modal />
+        <Modal show={this.state.purchasing}>
+          <OrderSummary traits= {this.state.traits} />
+        </Modal >
         <Partner traits={this.state.traits} />
         <BuildControls
         traitAdded={this.addTraitHandler}
         traitRemoved={this.removeTraitHandler}
         disabled= {disabledInfo}
         price={this.state.totalPrice}
+        ordered={this.purchaseHandler}
         purchaseable={this.state.purchaseable} />
       </>
     )

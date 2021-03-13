@@ -84,6 +84,6 @@ button {
 @media(min-width: 1000px) and (min-height:700px){
   .wrapper {
     width:700px;
-    height:1600px
+    height:800px
   }
 }

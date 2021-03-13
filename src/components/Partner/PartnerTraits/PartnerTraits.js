@@ -1,5 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Grid, Segment } from 'semantic-ui-react'
+
 import book from "../../../assets/images/book.png"
 import partner from "../../../assets/images/partner.png"
 import finance from "../../../assets/images/finance.png"
@@ -11,15 +13,17 @@ class PartnerTraits extends React.Component {
   render(){
     let trait =  null
 
+
+
     switch( this.props.type ) {
       case('partner'):
-        trait = <div> <img src={partner} style={{width:"30%"}} /> </div>
+        trait = <div> <img src={partner} style={{width:"30%", float:"left"}} /> </div>
         break;
       case('books'):
-        trait = <div> <img src={book} style={{width:"20%"}} /> </div>
+        trait = <div> <img src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /></div>
         break;
       case("humor"):
-        trait = <div><img src={humor} style={{width:"20%"}} /> </div>
+        trait = <div><img src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /> </div>
         break;
       case("kindness"):
         trait = <div><img src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} />  </div>
@@ -34,7 +38,8 @@ class PartnerTraits extends React.Component {
       trait = null
     }
     return(
-      trait
+        trait
+
     )
   }
 

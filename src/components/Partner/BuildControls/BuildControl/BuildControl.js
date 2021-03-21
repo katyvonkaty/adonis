@@ -1,20 +1,21 @@
-import React from "react"
-import { Button, Grid } from 'semantic-ui-react'
-
+import React from "react";
+import { Button, Radio, Grid } from "semantic-ui-react";
 
 const buildControl = (props) => (
-  <Grid>
-  <Grid.Column width={2}>
   <div className="buildcontrol">
-
     <div> {props.label} </div>
     <br />
-    <Button onClick={props.traitRemoved} disabled={props.disabled}> Less </Button> <br />
-    <Button onClick={props.traitAdded}> More </Button>
 
+    <Button.Group>
+      <Button onClick={props.traitRemoved} disabled={props.disabled}>
+        Less
+      </Button>
+      <Button.Or />
+      <Button onClick={props.traitAdded} positive>
+        More
+      </Button>
+    </Button.Group>
   </div>
-    </Grid.Column>
-  </Grid>
-)
+);
 
-export default buildControl
+export default buildControl;

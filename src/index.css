@@ -15,7 +15,7 @@ code {
   color:red
 } */
 
-.wrapper {
+/* .wrapper {
   width: 100%;
   margin: auto;
   height: 850px;
@@ -23,13 +23,13 @@ code {
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
-}
+} */
 
 .logo {
   width:20%;
 }
 
-.buildcontrols {
+/* .buildcontrols {
   width: 100%;
   background-color: #eee;
   display: flex;
@@ -38,7 +38,7 @@ code {
   position:fixed;
   bottom:0;
   padding: 20px;
-}
+} */
 
 /* .buildcontrol {
   display: inline-block;
@@ -116,9 +116,9 @@ button {
   }
 }
 
-@media (min-width: 1000px) and (min-height: 700px) {
+/* @media (min-width: 1000px) and (min-height: 700px) {
   .wrapper {
     width: 850px;
     height: 800px;
   }
-}
+} */

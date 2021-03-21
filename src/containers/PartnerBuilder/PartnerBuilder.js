@@ -3,6 +3,8 @@ import Partner from "../../components/Partner/Partner"
 import BuildControls from "../../components/Partner/BuildControls/BuildControls"
 import Modal from "../../components/UI/Modal/Modal"
 import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary"
+import { Grid, Image } from 'semantic-ui-react'
+
 
 const TRAIT_PRICES = {
   male:0,
@@ -104,6 +106,9 @@ class PartnerBuilder extends React.Component {
 
     return(
       <>
+      <Grid stackable>
+  <Grid.Row>
+
         <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
           <OrderSummary
           price={this.state.totalPrice}
@@ -111,7 +116,11 @@ class PartnerBuilder extends React.Component {
           purchaseCancelled={this.purchaseCancelHandler}
           traits= {this.state.traits} />
         </Modal >
+    <Grid.Column width={11} stackable>
         <Partner traits={this.state.traits} />
+        </Grid.Column>
+
+    <Grid.Column width={4}>
         <BuildControls
         traitAdded={this.addTraitHandler}
         traitRemoved={this.removeTraitHandler}
@@ -119,8 +128,11 @@ class PartnerBuilder extends React.Component {
         ordered={this.purchaseHandler}
         purchaseable={this.state.purchaseable}
         price={this.state.totalPrice}
-
        />
+         </Grid.Column>
+
+       </Grid.Row>
+</Grid>
       </>
     )
   }

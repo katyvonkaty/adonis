@@ -13,15 +13,16 @@ const partner = (props) => {
     },[])
 
     if(transformedTraits.length === 0) {
-      transformedTraits = <p> Please start building your love! </p>
+      transformedTraits = (
+        <div style={{textAlign:"center"}}> <h1>  Lets Make You A Partner! </h1><p> 2020 starter pack includes mask, sourdough bread, and gender neutral indivduals </p> </div>
+
+      )
     }
 
     console.log(transformedTraits)
   return (
     <div className="wrapper">
-      <PartnerTraits type="books" />
         {transformedTraits}
-      <PartnerTraits type="kindness" />
 
     </div>
   )

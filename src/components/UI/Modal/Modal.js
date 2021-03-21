@@ -2,8 +2,7 @@ import React from "react"
 import Backdrop from "../Backdrop/Backdrop"
 
 
-const modal = (props) => {
-  return (
+const modal = (props) => (
   <>
   <Backdrop show={props.show} clicked={props.modalClosed} />
   <div
@@ -16,7 +15,7 @@ const modal = (props) => {
 
   >  {props.children} </div>
   </>
+
 )
-}
 
 export default modal

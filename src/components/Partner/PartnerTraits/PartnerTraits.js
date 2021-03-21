@@ -31,7 +31,9 @@ class PartnerTraits extends React.Component {
       case('they'):
         trait =  <> <img src={they}  style={{width:"20%", float:"left"}} /> </>
         break;
-  
+      case('books'):
+        trait = <> <img style={{width:"10%",float:"right"}} src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /> </>
+        break;
       case("humor"):
         trait = <><img src={humor} style={{width:"10%",float:"right"}} /> </>
         break;

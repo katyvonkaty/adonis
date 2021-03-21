@@ -5,13 +5,12 @@ const buildControl = (props) => (
   <div className="buildcontrol">
     <div> {props.label} </div>
     <br />
-
     <Button.Group>
       <Button onClick={props.traitRemoved} disabled={props.disabled}>
         Less
       </Button>
       <Button.Or />
-      <Button onClick={props.traitAdded} positive>
+      <Button color="#eee" onClick={props.traitAdded} positive>
         More
       </Button>
     </Button.Group>

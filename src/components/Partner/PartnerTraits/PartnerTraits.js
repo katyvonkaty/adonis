@@ -12,11 +12,6 @@ import male from "../../../assets/images/male.png"
 import kindness from "../../../assets/images/kindness.png"
 
 
-
-
-
-
-
 class PartnerTraits extends React.Component {
   render(){
     let trait =  null

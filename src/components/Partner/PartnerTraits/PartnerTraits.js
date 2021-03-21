@@ -9,6 +9,8 @@ import humor from "../../../assets/images/humor.png"
 import she from "../../../assets/images/she.png"
 import they from "../../../assets/images/they.png"
 import male from "../../../assets/images/male.png"
+import kindness from "../../../assets/images/kindness.png"
+
 
 
 
@@ -21,27 +23,25 @@ class PartnerTraits extends React.Component {
 
     switch( this.props.type ) {
       case('male'):
-       trait =  <> <img src={male} style={{width:"30%"}} /> </>
+       trait =  <> <img src={male} style={{width:"20%",  float:"left"}} /> </>
         break;
       case('female'):
-          trait =  <> <img src={she} style={{width:"30%"}} /> </>
+          trait =  <> <img src={she} style={{width:"20%",  float:"left"}} /> </>
           break;
       case('they'):
-        trait =  <> <img src={they} style={{width:"30%"}} /> </>
+        trait =  <> <img src={they}  style={{width:"20%", float:"left"}} /> </>
         break;
-      case('books'):
-        trait = <> <img style={{width:"30%",float:"left"}} src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /> </>
-        break;
+  
       case("humor"):
-        trait = <><img style={{width:"30%",float:"left"}} src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /> </>
+        trait = <><img src={humor} style={{width:"10%",float:"right"}} /> </>
         break;
       case("kindness"):
-        trait = <><img style={{width:"30%",float:"left"}} src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} />  </>
+        trait = <><img src={kindness} style={{width:"20%",float:"right"}} />   </>
         break;
       case("cooking"):
-        trait = <><img style={{width:"30%",float:"right"}} src="https://st.depositphotos.com/1808169/1392/v/950/depositphotos_13925735-stock-illustration-cartoon-donut-illustration.jpg" style={{width:"20%"}} /> </>
+        trait = <><img style={{width:"10%",float:"right"}} src="https://st.depositphotos.com/1808169/1392/v/950/depositphotos_13925735-stock-illustration-cartoon-donut-illustration.jpg" style={{width:"20%"}} /> </>
       case("financial_savy"):
-        trait = <> <img src={finance} style={{width:"30%",float:"right"}} /> </>
+        trait = <> <img src={finance} style={{width:"10%",float:"right"}} /> </>
         break;
       default:
       trait = null

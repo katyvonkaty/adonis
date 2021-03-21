@@ -116,9 +116,10 @@ class PartnerBuilder extends React.Component {
         traitAdded={this.addTraitHandler}
         traitRemoved={this.removeTraitHandler}
         disabled= {disabledInfo}
-        price={this.state.totalPrice}
         ordered={this.purchaseHandler}
         purchaseable={this.state.purchaseable}
+        price={this.state.totalPrice}
+
        />
       </>
     )

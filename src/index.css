@@ -37,23 +37,17 @@ code {
   margin: auto;
   position:fixed;
   bottom:0;
-
   padding: 20px;
 }
 
-.buildcontrol {
+/* .buildcontrol {
   display: inline-block;
   justify-content: space-between;
   align-items: center;
   margin: 5px 0;
-}
+} */
 
-.buildcontrol button {
-  display: block;
-  font: inherit;
-  padding: 5px;
-  margin: 0 5px;
-}
+
 
 button {
   display: block;
@@ -124,7 +118,7 @@ button {
 
 @media (min-width: 1000px) and (min-height: 700px) {
   .wrapper {
-    width: 700px;
+    width: 850px;
     height: 800px;
   }
 }

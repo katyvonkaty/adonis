@@ -5,6 +5,9 @@ import Modal from "../../components/UI/Modal/Modal"
 import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary"
 
 const TRAIT_PRICES = {
+  male:0,
+  female:20,
+  they:40,
   books:10,
   humor:20,
   kindness:100,
@@ -16,7 +19,9 @@ class PartnerBuilder extends React.Component {
 
   state = {
     traits: {
-      partner:1,
+      male:0,
+      female:0,
+      they:0,
       books: 0,
       humor:0,
       kindness: 0,
@@ -75,8 +80,16 @@ class PartnerBuilder extends React.Component {
 
   }
 
-  purchaseHandler = () => {
+  purchaseHandler = () =>  {
     this.setState({purchasing: true})
+  }
+
+  purchaseCancelHandler = () => {
+    this.setState({purchasing:false})
+  }
+
+  purchaseContinueHandler = () => {
+    alert("continuging!")
   }
 
   render(){
@@ -91,8 +104,12 @@ class PartnerBuilder extends React.Component {
 
     return(
       <>
-        <Modal show={this.state.purchasing}>
-          <OrderSummary traits= {this.state.traits} />
+        <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
+          <OrderSummary
+          price={this.state.totalPrice}
+          purchaseContinue={this.purchaseContinueHandler}
+          purchaseCancelled={this.purchaseCancelHandler}
+          traits= {this.state.traits} />
         </Modal >
         <Partner traits={this.state.traits} />
         <BuildControls
@@ -101,7 +118,8 @@ class PartnerBuilder extends React.Component {
         disabled= {disabledInfo}
         price={this.state.totalPrice}
         ordered={this.purchaseHandler}
-        purchaseable={this.state.purchaseable} />
+        purchaseable={this.state.purchaseable}
+       />
       </>
     )
   }

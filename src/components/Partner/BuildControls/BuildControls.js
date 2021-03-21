@@ -2,6 +2,9 @@ import React from "react"
 import BuildControl from "./BuildControl/BuildControl"
 
 const controls = [
+  {label: "He/Him", type:"male"},
+  {label: "She/Her", type:"female"},
+  {label: "They/Them", type:"they"},
   {label: "Humor", type:"humor"},
   {label:"Kindness", type:"kindness"},
   {label:"Cooking", type:"cooking"},

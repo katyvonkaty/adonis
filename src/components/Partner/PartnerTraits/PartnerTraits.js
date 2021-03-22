@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Grid, Segment } from 'semantic-ui-react'
 
-import book from "../../../assets/images/book.png"
+import books from "../../../assets/images/books.png"
 import partner from "../../../assets/images/partner.png"
 import finance from "../../../assets/images/finance.png"
 import humor from "../../../assets/images/humor.png"
@@ -27,7 +27,7 @@ class PartnerTraits extends React.Component {
         trait =  <> <img src={they}  style={{width:"20%", float:"left"}} /> </>
         break;
       case('books'):
-        trait = <> <img style={{width:"10%",float:"right"}} src="https://static.vecteezy.com/system/resources/previews/000/165/640/original/kindness-illustration-vector.png" style={{width:"20%"}} /> </>
+        trait = <> <img style={{width:"10%",float:"right"}} src={books} /> </>
         break;
       case("humor"):
         trait = <><img src={humor} style={{width:"10%",float:"right"}} /> </>

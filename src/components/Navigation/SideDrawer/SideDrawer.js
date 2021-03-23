@@ -4,7 +4,7 @@ import classes from "../../../index.css";
 
 const SideDrawer = (props) => {
   if (props.open) {
-    <div className="sidedrawer open"> ;</div>
+    <div className="sidedrawer"> ;</div>
   }
 
 console.log(props);
@@ -12,7 +12,7 @@ console.log(props);
   return (
     <>
       <Backdrop show={props.open} clicked={props.closed} />
-      <div className="sidedrawer close">
+      <div className="sidedrawer">
         <li> Test </li>
         <li> Test </li>
         <li> Test </li>

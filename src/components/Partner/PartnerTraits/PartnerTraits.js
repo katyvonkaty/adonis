@@ -6,6 +6,7 @@ import books from "../../../assets/images/books.png"
 import partner from "../../../assets/images/partner.png"
 import finance from "../../../assets/images/finance.png"
 import humor from "../../../assets/images/humor.png"
+import avocado from "../../../assets/images/avocado.png"
 import she from "../../../assets/images/she.png"
 import they from "../../../assets/images/they.png"
 import male from "../../../assets/images/male.png"
@@ -33,10 +34,11 @@ class PartnerTraits extends React.Component {
         trait = <><img src={humor} style={{width:"10%",float:"right"}} /> </>
         break;
       case("kindness"):
-        trait = <><img src={kindness} style={{width:"20%",float:"right"}} />   </>
+        trait = <><img src={kindness} style={{width:"10%",float:"right"}} /> </>
         break;
       case("cooking"):
-        trait = <><img style={{width:"10%",float:"right"}} src="https://st.depositphotos.com/1808169/1392/v/950/depositphotos_13925735-stock-illustration-cartoon-donut-illustration.jpg" style={{width:"20%"}} /> </>
+        trait = <><img src={avocado} style={{width:"10%",float:"right"}}  /> </>
+        break;
       case("financial_savy"):
         trait = <> <img src={finance} style={{width:"10%",float:"right"}} /> </>
         break;

@@ -1,7 +1,7 @@
 import React from "react";
 import Partner from "../../components/Partner/Partner";
 import BuildControls from "../../components/Partner/BuildControls/BuildControls";
-import Modal from "../../components/UI/Modal/Modal";
+import ModalExampleCloseIcon from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary";
 import { Grid, Image } from "semantic-ui-react";
 
@@ -107,7 +107,7 @@ class PartnerBuilder extends React.Component {
       <>
         <Grid stackable>
           <Grid.Row>
-            <Modal
+            <ModalExampleCloseIcon
               show={this.state.purchasing}
               modalClosed={this.purchaseCancelHandler}
             >
@@ -117,7 +117,7 @@ class PartnerBuilder extends React.Component {
                 purchaseCancelled={this.purchaseCancelHandler}
                 traits={this.state.traits}
               />
-            </Modal>
+            </ModalExampleCloseIcon>
             <Grid.Column width={11} stackable>
               <Partner traits={this.state.traits} />
             </Grid.Column>

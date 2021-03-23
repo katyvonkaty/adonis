@@ -1,26 +1,33 @@
 import React from "react"
 import Button from "../../UI/Button/Button"
 
-const orderSummary = (props) => {
-  const traitSummary = Object.keys(props.traits)
-  .map(traitKey => {
-    return <li key={traitKey} style={{textTransform:"capitalize"}}>{traitKey}: {props.traits[traitKey]} </li>
-  })
+class OrderSummary extends React.Component {
+  componentDidUpdate(){
+console.log("order summary will udate");
+  }
 
-  return(
-    <>
-      <h3> your order </h3>
-      <p> delicious burger </p>
-      <ul>
-      {traitSummary}
-      </ul>
-      <p> <strong> Price: {props.price}</strong> </p>
-      <p> Continue to checkout </p>
-      <Button clicked={props.purchaseCancelled}> Cancel </Button>
-      <Button clicked={props.purchaseContinue}> Continue </Button>
-    </>
-  )
+  render() {
+    const traitSummary = Object.keys(this.props.traits)
+    .map(traitKey => {
+      return <li key={traitKey} style={{textTransform:"capitalize"}}>{traitKey}: {this.props.traits[traitKey]} </li>
+    })
+
+    return(
+      <>
+        <h3> your order </h3>
+        <p> delicious burger </p>
+        <ul>
+        {traitSummary}
+        </ul>
+        <p> <strong> Price: {this.props.price}</strong> </p>
+        <p> Continue to checkout </p>
+        <Button clicked={this.props.purchaseCancelled}> Cancel </Button>
+        <Button clicked={this.props.purchaseContinue}> Continue </Button>
+      </>
+    )
+  }
+
 
 }
 
-export default orderSummary
+export default OrderSummary

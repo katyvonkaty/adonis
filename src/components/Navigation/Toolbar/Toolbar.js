@@ -10,7 +10,7 @@ export default class Toolbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu>
+      <Menu stackable>
         <Menu.Item
           name='editorials'
           active={activeItem === 'editorials'}

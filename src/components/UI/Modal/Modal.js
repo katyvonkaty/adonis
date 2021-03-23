@@ -34,33 +34,45 @@
 // export default Modal
 
 import React from 'react'
-import { Button, Header, Icon, Modal } from 'semantic-ui-react'
+import { Header, Icon, Modal, Button } from 'semantic-ui-react'
 
-function ModalExampleCloseIcon() {
-  const [open, setOpen] = React.useState(false)
+class ModalExampleCloseIcon extends React.Component {
 
-  return (
-    <Modal
-      closeIcon
-      open={open}
-      trigger={<Button>Show Modal</Button>}
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-    >
-      <Header icon='archive' content='Archive Old Messages' />
-      <Modal.Content>
+state= {
+  open:"",
+}
 
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
-          <Icon name='remove' /> No
-        </Button>
-        <Button color='green' onClick={() => setOpen(false)}>
-          <Icon name='checkmark' /> Yes
-        </Button>
-      </Modal.Actions>
-    </Modal>
-  )
+
+  render(){
+    return(
+      <>
+
+      <Modal
+        closeIcon
+        open={this.state.open}
+        disabled={!this.props.purchaseable}
+        onClick={this.props.ordered}
+        trigger={<Button floated='right' style={{float:"right"}}>Continue To Checkout</Button>}
+        onClose={() => this.setState({open:false})}
+        onOpen={() => this.setState({open:true})}
+      >
+        <Header icon='archive' content='Your Order' />
+        <Modal.Content>
+        {this.props.children}
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color='red' onClick={() => this.setState({open:false})}>
+            <Icon name='remove' /> No
+          </Button>
+          <Button color='green' onClick={() => this.setState({open:false})}>
+            <Icon name='checkmark' /> Yes
+          </Button>
+        </Modal.Actions>
+      </Modal>
+      </>
+    )
+  }
+
 }
 
 export default ModalExampleCloseIcon

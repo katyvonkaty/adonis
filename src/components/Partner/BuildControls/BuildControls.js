@@ -1,6 +1,7 @@
 import React from "react"
 import BuildControl from "./BuildControl/BuildControl"
 import { Button, Radio, Grid } from 'semantic-ui-react'
+import { Header, Icon,Image, Modal } from 'semantic-ui-react'
 
 const controls = [
   {label: "He/Him", type:"male"},
@@ -13,8 +14,10 @@ const controls = [
   {label:"Financial Savy", type:"financial_savy"}
 ]
 
-const buildControls = (props) => (
+const BuildControls = (props) => {
+  const [open, setOpen] = React.useState(false)
 
+return(
   <div className="buildcontrols">
   <h3> Have It Your Way </h3>
   <p>Current Price: <strong> {props.price} </strong> </p>
@@ -27,10 +30,10 @@ const buildControls = (props) => (
 
        />
     ))}
-     <Button size='big' disabled={!props.purchaseable} onClick={props.ordered} color='purple'>Purple</Button>
+
 
   </div>
-
 )
+}
 
-export default buildControls
+export default BuildControls

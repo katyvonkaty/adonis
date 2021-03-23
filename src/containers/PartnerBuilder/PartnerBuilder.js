@@ -107,17 +107,7 @@ class PartnerBuilder extends React.Component {
       <>
         <Grid stackable>
           <Grid.Row>
-            <ModalExampleCloseIcon
-              show={this.state.purchasing}
-              modalClosed={this.purchaseCancelHandler}
-            >
-              <OrderSummary
-                price={this.state.totalPrice}
-                purchaseContinue={this.purchaseContinueHandler}
-                purchaseCancelled={this.purchaseCancelHandler}
-                traits={this.state.traits}
-              />
-            </ModalExampleCloseIcon>
+
             <Grid.Column width={11} stackable>
               <Partner traits={this.state.traits} />
             </Grid.Column>
@@ -127,11 +117,26 @@ class PartnerBuilder extends React.Component {
                 traitAdded={this.addTraitHandler}
                 traitRemoved={this.removeTraitHandler}
                 disabled={disabledInfo}
+                traits={this.state.traits}
+
                 ordered={this.purchaseHandler}
                 purchaseable={this.state.purchaseable}
                 price={this.state.totalPrice}
               />
-            </Grid.Column>
+
+            <ModalExampleCloseIcon
+              show={this.state.purchasing}
+              modalClosed={this.purchaseCancelHandler}
+            >
+              <OrderSummary
+                price={this.state.totalPrice}
+                purchaseContinue={this.purchaseContinueHandler}
+                purchaseCancelled={this.purchaseCancelHandler}
+                traits={this.state.traits}
+
+              />
+            </ModalExampleCloseIcon>
+                </Grid.Column>
           </Grid.Row>
         </Grid>
       </>

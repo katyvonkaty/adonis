@@ -1,5 +1,4 @@
 import React from "react"
-import logo from './logo.svg';
 import 'semantic-ui-css/semantic.min.css'
 
 import Layout from "./components/Layout/Layout"

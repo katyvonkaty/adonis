@@ -1,9 +1,12 @@
 import React from "react";
+import axios from "../../axios-orders"
 import Partner from "../../components/Partner/Partner";
 import BuildControls from "../../components/Partner/BuildControls/BuildControls";
 import ModalExampleCloseIcon from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary";
-import { Grid, Image } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
+import Spinner from "../../components/UI/Spinner/Spinner"
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler"
 
 const TRAIT_PRICES = {
   male: 0,
@@ -31,6 +34,7 @@ class PartnerBuilder extends React.Component {
     totalPrice: 50,
     purchaseable: false,
     purchasing: false,
+    loading:false
   };
 
   updatePurchaseState(traits) {
@@ -91,7 +95,23 @@ class PartnerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    alert("continuging!");
+    this.setState({loading:"true"})
+    const order = {
+      traits: this.state.traits,
+      price: this.state.totalPrice,
+      customer: {
+        name: "Katie J",
+        address: {
+          street: "Hilda St",
+          zipCode:"11020"
+        },
+        email: "test@test.com",
+      },
+      delivery:"fastest"
+    }
+    axios.post("/orders.json", order)
+    .then(response => this.setState({loading:false, purchasing:false}))
+    .catch(error => this.setState({loading:false,  purchasing:false}))
   };
 
   render() {
@@ -101,6 +121,17 @@ class PartnerBuilder extends React.Component {
 
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
+    }
+    let orderSummary =   <OrderSummary
+        price={this.state.totalPrice}
+        purchaseContinue={this.purchaseContinueHandler}
+        purchaseCancelled={this.purchaseCancelHandler}
+        traits={this.state.traits}
+
+      />
+
+    if(this.state.loading) {
+      orderSummary = <Spinner />
     }
 
     return (
@@ -126,15 +157,10 @@ class PartnerBuilder extends React.Component {
 
             <ModalExampleCloseIcon
               show={this.state.purchasing}
+              purchaseContinue={this.purchaseContinueHandler}
               modalClosed={this.purchaseCancelHandler}
             >
-              <OrderSummary
-                price={this.state.totalPrice}
-                purchaseContinue={this.purchaseContinueHandler}
-                purchaseCancelled={this.purchaseCancelHandler}
-                traits={this.state.traits}
-
-              />
+            {orderSummary}
             </ModalExampleCloseIcon>
                 </Grid.Column>
           </Grid.Row>
@@ -144,4 +170,4 @@ class PartnerBuilder extends React.Component {
   }
 }
 
-export default PartnerBuilder;
+export default withErrorHandler(PartnerBuilder, axios);

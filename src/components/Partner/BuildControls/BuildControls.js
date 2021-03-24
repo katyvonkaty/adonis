@@ -1,7 +1,5 @@
 import React from "react"
 import BuildControl from "./BuildControl/BuildControl"
-import { Button, Radio, Grid } from 'semantic-ui-react'
-import { Header, Icon,Image, Modal } from 'semantic-ui-react'
 
 const controls = [
   {label: "He/Him", type:"male"},
@@ -15,7 +13,6 @@ const controls = [
 ]
 
 const BuildControls = (props) => {
-  const [open, setOpen] = React.useState(false)
 
 return(
   <div className="buildcontrols">

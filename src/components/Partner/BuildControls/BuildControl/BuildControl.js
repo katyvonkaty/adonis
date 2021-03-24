@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Radio, Grid } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 const buildControl = (props) => (
   <div className="buildcontrol">

@@ -1,9 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Grid, Segment } from 'semantic-ui-react'
 
 import books from "../../../assets/images/books.png"
-import partner from "../../../assets/images/partner.png"
 import finance from "../../../assets/images/finance.png"
 import humor from "../../../assets/images/humor.png"
 import avocado from "../../../assets/images/avocado.png"
@@ -19,28 +17,28 @@ class PartnerTraits extends React.Component {
 
     switch( this.props.type ) {
       case('male'):
-       trait =  <> <img src={male} style={{width:"20%",  float:"left"}} /> </>
+       trait =  <> <img src={male} alt="male" style={{width:"20%",  float:"left"}} /> </>
         break;
       case('female'):
-          trait =  <> <img src={she} style={{width:"20%",  float:"left"}} /> </>
+          trait =  <> <img src={she} alt="female" style={{width:"20%",  float:"left"}} /> </>
           break;
       case('they'):
-        trait =  <> <img src={they}  style={{width:"20%", float:"left"}} /> </>
+        trait =  <> <img src={they} alt="they" style={{width:"20%", float:"left"}} /> </>
         break;
       case('books'):
-        trait = <> <img style={{width:"10%",float:"right"}} src={books} /> </>
+        trait = <> <img  alt="books" style={{width:"10%",float:"right"}} src={books} /> </>
         break;
       case("humor"):
-        trait = <><img src={humor} style={{width:"10%",float:"right"}} /> </>
+        trait = <><img  alt="humor" src={humor} style={{width:"10%",float:"right"}} /> </>
         break;
       case("kindness"):
-        trait = <><img src={kindness} style={{width:"10%",float:"right"}} /> </>
+        trait = <><img  alt="kindness"  src={kindness} style={{width:"10%",float:"right"}} /> </>
         break;
       case("cooking"):
-        trait = <><img src={avocado} style={{width:"10%",float:"right"}}  /> </>
+        trait = <><img  alt="cooking" src={avocado} style={{width:"10%",float:"right"}}  /> </>
         break;
       case("financial_savy"):
-        trait = <> <img src={finance} style={{width:"10%",float:"right"}} /> </>
+        trait = <> <img  alt="savy"  src={finance} style={{width:"10%",float:"right"}} /> </>
         break;
       default:
       trait = null

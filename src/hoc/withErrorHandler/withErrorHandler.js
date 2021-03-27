@@ -22,10 +22,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
     render(){
       return (
         <>
-        <ModalExampleCloseIcon show={this.state.error} clicked={this.closeModal}>
-          {this.state.error? this.state.error.message : null}
-
-          </ModalExampleCloseIcon>
+      
           <WrappedComponent {...this.props} />
         </>
       )

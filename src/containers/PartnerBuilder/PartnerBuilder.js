@@ -1,12 +1,12 @@
 import React from "react";
-import axios from "../../axios-orders"
+import axios from "../../axios-orders";
 import Partner from "../../components/Partner/Partner";
 import BuildControls from "../../components/Partner/BuildControls/BuildControls";
 import ModalExampleCloseIcon from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Partner/OrderSummary/OrderSummary";
-import { Grid } from "semantic-ui-react";
-import Spinner from "../../components/UI/Spinner/Spinner"
-import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler"
+import { Grid, Container} from "semantic-ui-react";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 
 const TRAIT_PRICES = {
   male: 0,
@@ -21,6 +21,7 @@ const TRAIT_PRICES = {
 
 class PartnerBuilder extends React.Component {
   state = {
+
     traits: {
       male: 0,
       female: 0,
@@ -34,8 +35,16 @@ class PartnerBuilder extends React.Component {
     totalPrice: 50,
     purchaseable: false,
     purchasing: false,
-    loading:false
+    loading: false,
   };
+
+  // componentDidMount() {
+  //   axios
+  //     .get("https://partner-9b329-default-rtdb.firebaseio.com/traits.json")
+  //     .then((response) => {
+  //       this.setState({ traits: response.data });
+  //     });
+  // }
 
   updatePurchaseState(traits) {
     const sum = Object.keys(traits)
@@ -95,7 +104,7 @@ class PartnerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({loading:"true"})
+    this.setState({ loading: "true" });
     const order = {
       traits: this.state.traits,
       price: this.state.totalPrice,
@@ -103,15 +112,16 @@ class PartnerBuilder extends React.Component {
         name: "Katie J",
         address: {
           street: "Hilda St",
-          zipCode:"11020"
+          zipCode: "11020",
         },
         email: "test@test.com",
       },
-      delivery:"fastest"
-    }
-    axios.post("/orders.json", order)
-    .then(response => this.setState({loading:false, purchasing:false}))
-    .catch(error => this.setState({loading:false,  purchasing:false}))
+      delivery: "fastest",
+    };
+    axios
+      .post("/orders.json", order)
+      .then((response) => this.setState({ loading: false, purchasing: false }))
+      .catch((error) => this.setState({ loading: false, purchasing: false }));
   };
 
   render() {
@@ -122,49 +132,45 @@ class PartnerBuilder extends React.Component {
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
-    let orderSummary =   <OrderSummary
-        price={this.state.totalPrice}
-        purchaseContinue={this.purchaseContinueHandler}
-        purchaseCancelled={this.purchaseCancelHandler}
-        traits={this.state.traits}
 
-      />
 
-    if(this.state.loading) {
-      orderSummary = <Spinner />
-    }
 
     return (
       <>
-        <Grid stackable>
-          <Grid.Row>
+      <Container>
+      <Grid stackable>
+        <Grid.Row>
+          <Grid.Column width={11} stackable>
+            <Partner traits={this.state.traits} />
+          </Grid.Column>
 
-            <Grid.Column width={11} stackable>
-              <Partner traits={this.state.traits} />
-            </Grid.Column>
-
-            <Grid.Column width={4}>
-              <BuildControls
-                traitAdded={this.addTraitHandler}
-                traitRemoved={this.removeTraitHandler}
-                disabled={disabledInfo}
-                traits={this.state.traits}
-
-                ordered={this.purchaseHandler}
-                purchaseable={this.state.purchaseable}
-                price={this.state.totalPrice}
-              />
+          <Grid.Column width={4}>
+            <BuildControls
+              traitAdded={this.addTraitHandler}
+              traitRemoved={this.removeTraitHandler}
+              disabled={disabledInfo}
+              traits={this.state.traits}
+              ordered={this.purchaseHandler}
+              purchaseable={this.state.purchaseable}
+              price={this.state.totalPrice}
+            />
 
             <ModalExampleCloseIcon
               show={this.state.purchasing}
               purchaseContinue={this.purchaseContinueHandler}
               modalClosed={this.purchaseCancelHandler}
             >
-            {orderSummary}
+            <OrderSummary
+              price={this.state.totalPrice}
+              purchaseContinue={this.purchaseContinueHandler}
+              purchaseCancelled={this.purchaseCancelHandler}
+              traits={this.state.traits}
+            />
             </ModalExampleCloseIcon>
-                </Grid.Column>
-          </Grid.Row>
-        </Grid>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+      </Container>
       </>
     );
   }

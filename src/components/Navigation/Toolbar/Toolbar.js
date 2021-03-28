@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Input, Menu, Container } from 'semantic-ui-react'
 
-export default class Toolbar extends Component {
-  state = {}
+export default class MenuExampleSecondary extends Component {
+  state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -10,30 +10,40 @@ export default class Toolbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu stackable>
+      <Container>
+      <Menu secondary stackable>
+      <Menu.Item
+        name='Build a Partner'
+        active={activeItem === 'Build A Partner'}
+        href="/"
+      />
         <Menu.Item
-          name='editorials'
-          active={activeItem === 'editorials'}
+          name='home'
+          active={activeItem === 'home'}
           onClick={this.handleItemClick}
-        >
-          Editorials
-        </Menu.Item>
+        />
         <Menu.Item
-          name='reviews'
-          active={activeItem === 'reviews'}
+          name='messages'
+          active={activeItem === 'messages'}
           onClick={this.handleItemClick}
-        >
-          Reviews
-        </Menu.Item>
-
+        />
         <Menu.Item
-          name='upcomingEvents'
-          active={activeItem === 'upcomingEvents'}
+          name='friends'
+          active={activeItem === 'friends'}
           onClick={this.handleItemClick}
-        >
-          Upcoming Events
-        </Menu.Item>
+        />
+        <Menu.Menu position='right'>
+          <Menu.Item>
+            <Input icon='search' placeholder='Search...' />
+          </Menu.Item>
+          <Menu.Item
+            name='logout'
+            active={activeItem === 'logout'}
+            onClick={this.handleItemClick}
+          />
+        </Menu.Menu>
       </Menu>
+      </Container>
     )
   }
 }

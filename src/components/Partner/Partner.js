@@ -1,7 +1,9 @@
 import React from "react";
 import PartnerTraits from "./PartnerTraits/PartnerTraits";
+import {withRouter} from "react-router";
 
 const partner = (props) => {
+  console.log(props);
   let transformedTraits = Object.keys(props.traits)
     .map((traitKey) => {
       return [...Array(props.traits[traitKey])].map((_, i) => {
@@ -16,18 +18,21 @@ const partner = (props) => {
     transformedTraits = (
       <div style={{ textAlign: "center" }}>
         {" "}
-        <h1> Lets Make You A Partner! </h1>
         <p>
           {" "}
-          2020 starter pack includes mask, sourdough bread, and gender neutral
-          indivduals{" "}
+          Select from the controls on the right to build!{" "}
         </p>{" "}
       </div>
     );
   }
 
   console.log(transformedTraits);
-  return <div className="wrapper">{transformedTraits}</div>;
+  return <div className="wrapper">
+  <h1 style={{ textAlign: "center" }}> Lets Make You A Partner! </h1>
+  <p style={{ textAlign: "center" }}> 2020 starter pack includes mask, sourdough bread, and gender neutral
+  indivduals </p>
+      {transformedTraits}
+</div>;
 };
 
-export default partner;
+export default withRouter(partner);

@@ -21,7 +21,6 @@ const TRAIT_PRICES = {
 
 class PartnerBuilder extends React.Component {
   state = {
-
     traits: {
       male: 0,
       female: 0,
@@ -37,13 +36,17 @@ class PartnerBuilder extends React.Component {
     purchasing: false,
     loading: false,
   };
-
+  //
   // componentDidMount() {
+  //   console.log(this.props);
   //   axios
   //     .get("https://partner-9b329-default-rtdb.firebaseio.com/traits.json")
-  //     .then((response) => {
+  //     .then( response => {
   //       this.setState({ traits: response.data });
-  //     });
+  //     })
+  //     .catch( error => {
+  //       this.setState({error:true})
+  //     })
   // }
 
   updatePurchaseState(traits) {
@@ -104,25 +107,20 @@ class PartnerBuilder extends React.Component {
   };
 
   purchaseContinueHandler = () => {
-    this.setState({ loading: "true" });
-    const order = {
-      traits: this.state.traits,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Katie J",
-        address: {
-          street: "Hilda St",
-          zipCode: "11020",
-        },
-        email: "test@test.com",
-      },
-      delivery: "fastest",
-    };
-    axios
-      .post("/orders.json", order)
-      .then((response) => this.setState({ loading: false, purchasing: false }))
-      .catch((error) => this.setState({ loading: false, purchasing: false }));
-  };
+
+        const queryParams = [];
+        for (let i in this.state.traits) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.traits[i]));
+        }
+        queryParams.push('price=' + this.state.totalPrice.toFixed(2));
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
+    }
+
+
 
   render() {
     const disabledInfo = {

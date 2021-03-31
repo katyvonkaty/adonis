@@ -21,33 +21,26 @@ const TRAIT_PRICES = {
 
 class PartnerBuilder extends React.Component {
   state = {
-    traits: {
-      male: 0,
-      female: 0,
-      they: 0,
-      books: 0,
-      humor: 0,
-      kindness: 0,
-      financial_savy: 0,
-      cooking: 0,
-    },
+    traits:null,
     totalPrice: 50,
     purchaseable: false,
     purchasing: false,
     loading: false,
+    error:false
   };
-  //
-  // componentDidMount() {
-  //   console.log(this.props);
-  //   axios
-  //     .get("https://partner-9b329-default-rtdb.firebaseio.com/traits.json")
-  //     .then( response => {
-  //       this.setState({ traits: response.data });
-  //     })
-  //     .catch( error => {
-  //       this.setState({error:true})
-  //     })
-  // }
+
+  componentDidMount() {
+    console.log(this.props);
+    axios
+      .get("https://partner-9b329-default-rtdb.firebaseio.com/traits.json")
+      .then( response => {
+        this.setState({ traits: response.data });
+        console.log(response);
+      })
+      .catch( error => {
+        this.setState({error:true})
+      })
+  }
 
   updatePurchaseState(traits) {
     const sum = Object.keys(traits)
@@ -74,9 +67,8 @@ class PartnerBuilder extends React.Component {
     const newPrice = oldPrice + priceAddition;
     this.setState({
       totalPrice: newPrice,
-      traits: updatedTraits,
-      purchaseable: true,
-    });
+      traits: updatedTraits
+        });
     this.updatePurchaseState(updatedTraits);
   };
 
@@ -131,45 +123,64 @@ class PartnerBuilder extends React.Component {
       disabledInfo[key] = disabledInfo[key] <= 0;
     }
 
+    let orderSummary = null;
+    let partner = this.state.error ? <Spinner /> : <Spinner />
+
+    if(this.state.traits) {
+      partner =   ( <Grid stackable>
+          <Grid.Row>
+            <Grid.Column width={11} stackable>
+              <Partner traits={this.state.traits || undefined} />
+            </Grid.Column>
+
+            <Grid.Column width={4}>
+              <BuildControls
+                traitAdded={this.addTraitHandler}
+                traitRemoved={this.removeTraitHandler}
+                disabled={disabledInfo}
+                traits={this.state.traits}
+                ordered={this.purchaseHandler}
+                purchaseable={this.state.purchaseable}
+                price={this.state.totalPrice}
+              />
+
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+
+
+            );
+              orderSummary =       (<OrderSummary
+                price={this.state.totalPrice}
+                purchaseContinue={this.purchaseContinueHandler}
+                purchaseCancelled={this.purchaseCancelHandler}
+                traits={this.state.traits}
+              />
+            )
+
+    }
+
+    if(this.state.loading) {
+      orderSummary = <Spinner />
+    }
 
 
     return (
       <>
       <Container>
-      <Grid stackable>
-        <Grid.Row>
-          <Grid.Column width={11} stackable>
-            <Partner traits={this.state.traits} />
-          </Grid.Column>
 
-          <Grid.Column width={4}>
-            <BuildControls
-              traitAdded={this.addTraitHandler}
-              traitRemoved={this.removeTraitHandler}
-              disabled={disabledInfo}
-              traits={this.state.traits}
-              ordered={this.purchaseHandler}
-              purchaseable={this.state.purchaseable}
-              price={this.state.totalPrice}
-            />
+      <ModalExampleCloseIcon
+        show={this.state.purchasing}
+        purchaseContinue={this.purchaseContinueHandler}
+        modalClosed={this.purchaseCancelHandler}
+      >
+      {orderSummary}
+      </ModalExampleCloseIcon>
+      {partner}
 
-            <ModalExampleCloseIcon
-              show={this.state.purchasing}
-              purchaseContinue={this.purchaseContinueHandler}
-              modalClosed={this.purchaseCancelHandler}
-            >
-            <OrderSummary
-              price={this.state.totalPrice}
-              purchaseContinue={this.purchaseContinueHandler}
-              purchaseCancelled={this.purchaseCancelHandler}
-              traits={this.state.traits}
-            />
-            </ModalExampleCloseIcon>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
       </Container>
       </>
+
     );
   }
 }

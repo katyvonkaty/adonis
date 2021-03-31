@@ -2,14 +2,14 @@ import React from "react"
 import BuildControl from "./BuildControl/BuildControl"
 
 const controls = [
-  {label: "He/Him", type:"male"},
-  {label: "She/Her", type:"female"},
-  {label: "They/Them", type:"they"},
+  {label: "Male", type:"male"},
+  {label: "Female", type:"female"},
+  {label: "They", type:"they"},
   {label: "Humor", type:"humor"},
   {label:"Kindness", type:"kindness"},
   {label:"Cooking", type:"cooking"},
   {label:"Books", type:"books"},
-  {label:"Financial Savy", type:"financial_savy"}
+  {label:"Financal Savy", type:"financial_savy"}
 ]
 
 const BuildControls = (props) => {

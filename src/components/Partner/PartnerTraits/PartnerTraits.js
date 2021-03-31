@@ -17,7 +17,7 @@ class PartnerTraits extends React.Component {
 
     switch( this.props.type ) {
       case('male'):
-       trait =  <> <img src={male} alt="male" style={{width:"20%",  float:"left"}} /> </>
+       trait =   <img src={male} alt="male" style={{width:"20%",  float:"left"}} />
         break;
       case('female'):
           trait =  <> <img src={she} alt="female" style={{width:"20%",  float:"left"}} /> </>
@@ -28,7 +28,7 @@ class PartnerTraits extends React.Component {
       case('books'):
         trait = <> <img  alt="books" style={{width:"10%",float:"right"}} src={books} /> </>
         break;
-      case("humor"):
+      case('humor'):
         trait = <><img  alt="humor" src={humor} style={{width:"10%",float:"right"}} /> </>
         break;
       case("kindness"):
@@ -46,7 +46,6 @@ class PartnerTraits extends React.Component {
 
     return(
         trait
-
     )
 
   }

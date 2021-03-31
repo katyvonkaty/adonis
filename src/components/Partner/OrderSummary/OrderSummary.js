@@ -3,9 +3,6 @@ import { List } from 'semantic-ui-react'
 
 
 class OrderSummary extends React.Component {
-  componentDidUpdate(){
-console.log("order summary will udate");
-  }
 
   render() {
     const traitSummary = Object.keys(this.props.traits)

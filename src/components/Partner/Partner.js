@@ -3,9 +3,11 @@ import PartnerTraits from "./PartnerTraits/PartnerTraits";
 import {withRouter} from "react-router";
 
 const partner = (props) => {
-  console.log(props);
+  console.log(props.traits);
+
   let transformedTraits = Object.keys(props.traits)
-    .map((traitKey) => {
+    .map( traitKey => {
+
       return [...Array(props.traits[traitKey])].map((_, i) => {
         return <PartnerTraits key={traitKey + i} type={traitKey} />;
       });
@@ -35,4 +37,4 @@ const partner = (props) => {
 </div>;
 };
 
-export default withRouter(partner);
+export default partner;

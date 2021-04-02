@@ -16,7 +16,7 @@ state= {
         open={this.state.open}
         disabled={!this.props.purchaseable}
         onClick={this.props.ordered}
-        trigger={<Button fluid style={{marginTop:"30px"}} >Continue To Checkout</Button>}
+        trigger={<Button  >Continue To Checkout</Button>}
         onClose={() => this.setState({open:false})}
         onOpen={() => this.setState({open:true})}
       >

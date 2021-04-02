@@ -129,9 +129,6 @@ class PartnerBuilder extends React.Component {
     if(this.state.traits) {
       partner =   ( <Grid stackable>
           <Grid.Row>
-            <Grid.Column width={11} stackable>
-              <Partner traits={this.state.traits || undefined} />
-            </Grid.Column>
 
             <Grid.Column width={4}>
               <BuildControls
@@ -145,6 +142,11 @@ class PartnerBuilder extends React.Component {
               />
 
               </Grid.Column>
+
+              <Grid.Column width={11} stackable>
+                <Partner traits={this.state.traits || undefined} />
+              </Grid.Column>
+
             </Grid.Row>
           </Grid>
 
@@ -168,7 +170,7 @@ class PartnerBuilder extends React.Component {
     return (
       <>
       <Container>
-
+      {partner}
       <ModalExampleCloseIcon
         show={this.state.purchasing}
         purchaseContinue={this.purchaseContinueHandler}
@@ -176,7 +178,7 @@ class PartnerBuilder extends React.Component {
       >
       {orderSummary}
       </ModalExampleCloseIcon>
-      {partner}
+
 
       </Container>
       </>

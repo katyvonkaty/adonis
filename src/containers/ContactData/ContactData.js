@@ -15,9 +15,16 @@ class ContactData extends React.Component {
           placeholder: "your name",
         },
         value: "",
+        validation: {
+          required:true,
+          minLength:5,
+          maxLength:5
+        },
+        valid:false,
+        touched: false
       },
       email: {
-        elementType: "textarea",
+        elementType: "input",
         elementConfig: {
           type: "text",
           placeholder: "email",
@@ -31,6 +38,8 @@ class ContactData extends React.Component {
           placeholder: "zip",
         },
         value: "",
+        touched: false
+
       },
 
       state: {
@@ -44,13 +53,17 @@ class ContactData extends React.Component {
       deliveryMethod: {
         elementType: "select",
         elementConfig: {
-          placeholder: "delivery",
-
-          options: [{ value: "fastest", displayValue:"fastest" }, { value: "cheapest",displayValue:"cheapest" }],
+          options: [
+            { value: "fastest", displayValue:"fastest" },
+            { value: "cheapest",displayValue:"cheapest" }
+          ],
         },
         value: "",
+        touched: false
+
       },
     },
+    formIsValid: false,
     loading: false,
   };
 
@@ -58,8 +71,8 @@ class ContactData extends React.Component {
     event.preventDefault();
     this.setState({ loading: true });
     const formData = {}
-    for (let formElementIdentifier in this.state.orderform){
-      formData[formElementIdentifier] = this.state.[formElementIdentifier].value
+    for (let formElementIdentifier in this.state.orderForm){
+      formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value
     }
     const order = {
       traits: this.props.traits,
@@ -77,6 +90,30 @@ class ContactData extends React.Component {
     console.log(this.props.traits);
   };
 
+  checkValidity(value, rules) {
+    let isValid = true
+
+    if(!rules) {
+      return true;
+    }
+    
+    if(rules.required) {
+      isValid = value.trim !== "" && isValid
+    }
+
+    if(rules.minLength ) {
+      isValid = value.length >= rules.minLength && isValid
+    }
+
+    if(rules.maxLength) {
+      isValid = value.length >= rules.maxLength && isValid
+    }
+
+    return isValid;
+  }
+
+  //trim removes white space
+
   inputChangedHandler = (event, inputIdentifier) => {
 
     const updatedOrderForm = {
@@ -88,8 +125,15 @@ class ContactData extends React.Component {
     }
 
     updatedFormElement.value = event.target.value
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement
-    this.setState({orderForm: updatedOrderForm})
+
+    let formIsValid = true;
+    for(let inputIdentifier in updatedOrderForm) {
+      formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
+    }
+    this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid})
     console.log(event.target.value);
   }
 
@@ -102,16 +146,17 @@ class ContactData extends React.Component {
       })
     }
     let form = (
-      <form centered>
+      <form onSubmit={this.orderHandler} centered>
         {formElements.map( formElement => (
           <InputExample
           key={formElement.id}
           elementType={formElement.config.elementType}
           elementConfig={formElement.config.elementConfig}
           value={formElement.config.value}
+          touched ={formElement.config.touched}
           onChange={(event) => this.inputChangedHandler(event, formElement.id)} />
         ))}
-        <Button onClick={this.orderHandler}> Checkout </Button>
+        <Button onClick={this.orderHandler} disabled={!this.state.formIsValid}> Checkout </Button>
       </form>
     );
 

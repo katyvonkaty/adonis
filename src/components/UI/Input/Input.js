@@ -1,55 +1,67 @@
-import React from 'react'
-import { Input } from 'semantic-ui-react'
+import React from "react";
+import { Input } from "semantic-ui-react";
 
-const InputExample = (props) =>  {
-
+const InputExample = (props) => {
   let inputElement = null;
+  // const inputClasses = [classes.inputElement];
 
-  switch(props.elementType) {
-  case('input'):
-    inputElement = <input {...props.elementConfig}
-    {...props.elementConfig}
-    value={props.value}
-    onChange={props.onChange}
- />
-    break;
-  case("textarea"):
-    inputElement = <textarea {...props.elementConfig}
-    {...props.elementConfig}
-    value = {props.value}
-    onChange={props.onChange}
-
-     />
-
-    break;
-    case("select"):
+  switch (props.elementType) {
+    case "input":
       inputElement = (
-        <select
-      value = {props.value}
-      onChange={props.onChange}
-      {...props.elementConfig.options.map(option => (
-        <option key={option.value} value={option.value}>
-          {option.displayValue}
-        </option>
-      ))}
-       />
-
-      )
+        <input
+          {...props.elementConfig}
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.onChange}
+        />
+      );
+      break;
+    case "textarea":
+      inputElement = (
+        <textarea
+          {...props.elementConfig}
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.onChange}
+        />
+      );
 
       break;
-  default:
-    inputElement = <input {...props.elementConfig}
-    {...props.elementConfig}
-    value = {props.value}
-        onChange={props.onChange}/>
+    case "select":
+      inputElement = (
+        <select
+          value={props.value}
+          onChange={props.onChange}
+          {...props.elementConfig.options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.displayValue}
+            </option>
+          ))}
+        />
+      );
 
-}
+      break;
+    default:
+      inputElement = (
+        <input
+          {...props.elementConfig}
+          // className={inputClasses.join(" ")}
+          {...props.elementConfig}
+          value={props.value}
+          onChange={props.onChange}
+        />
+      );
+  }
 
   return (
     <>
-    <Input placeholder={props.label} value = {props.value} {...props.elementConfig}  />
+      <Input
+        placeholder={props.label}
+        value={props.value}
+        {...props.elementConfig}
+      />
     </>
-  )
-}
+  );
+};
 
-export default InputExample
+export default InputExample;
